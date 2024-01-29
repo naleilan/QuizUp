@@ -1,9 +1,10 @@
 import React, { useEffect, useReducer } from "react";
 import Header from "./Header";
-import Question from "./Question";
+import MainPart from "./MainPart.jsx";
 import Loader from "./Loader";
 import Error from "./Error";
 import StartScreen from "./StartScreen";
+import Question from "./Question.jsx";
 
 const initialState = {
   questions: [],
@@ -37,11 +38,12 @@ export default function App() {
   return (
     <div className="app">
       <Header />
-      <Question>
+      <MainPart>
         {status === "loading" && <Loader />}
         {status === "error" && <Error />}
         {status === "ready" && <StartScreen numQuestions={numQuestions} />}
-      </Question>
+        {status === "active" && <Question />}
+      </MainPart>
     </div>
   );
 }

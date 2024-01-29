@@ -1,7 +1,7 @@
 import React from "react";
 
-function Question({ children }) {
-  return <main className="main">{children}</main>;
+function Question() {
+  return <div></div>;
 }
 
 export default Question;
