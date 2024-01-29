@@ -8,7 +8,7 @@ import Question from "./Question.jsx";
 
 const initialState = {
   questions: [],
-  //'loading', 'error','ready','avtive','finished'
+  //'loading', 'error','ready','active','finished'
   status: "loading",
 };
 
