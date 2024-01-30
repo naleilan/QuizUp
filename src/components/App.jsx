@@ -25,12 +25,12 @@ function reducer(state, action) {
       return { ...state, status: "active" };
     case "newAnswer":
       const question = state.questions.at(state.index);
-
+      console.log(state.questions);
       return {
         ...state,
         answer: action.payload,
         points:
-          action.payload === question.corrctOption
+          action.payload === question.correctOption
             ? state.points + question.points
             : state.points,
       };
