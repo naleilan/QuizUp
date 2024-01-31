@@ -11,6 +11,8 @@ import Finishedscreen from "./Finishedscreen.jsx";
 import Footer from "./Footer.jsx";
 import Timer from "./Timer.jsx";
 
+const SEC_FOR_QUESTION = 30;
+
 const initialState = {
   questions: [],
   //'loading', 'error','ready','active','finished'
@@ -19,6 +21,7 @@ const initialState = {
   answer: null,
   points: 0,
   highscore: 0,
+  secoundsRemain: null,
 };
 
 function reducer(state, action) {
@@ -28,7 +31,11 @@ function reducer(state, action) {
     case "dataFailed":
       return { ...state, status: "error" };
     case "start":
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        secoundsRemain: state.questions.length * SEC_FOR_QUESTION,
+      };
     case "newAnswer":
       const question = state.questions.at(state.index);
       console.log(state.questions);
@@ -59,14 +66,22 @@ function reducer(state, action) {
     //   answer: null,
     //   status: "ready",
     // };
+    case "clock":
+      return {
+        ...state,
+        secoundsRemain: state.secoundsRemain - 1,
+        status: state.secoundsRemain === 0 ? "finished" : state.status,
+      };
     default:
       throw new Error("Unknown action");
   }
 }
 
 export default function App() {
-  const [{ questions, status, index, answer, points, highscore }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { questions, status, index, answer, points, highscore, secoundsRemain },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
   const maxPossiblePoints = questions.reduce(
@@ -105,7 +120,7 @@ export default function App() {
               answer={answer}
             />
             <footer>
-              <Timer />
+              <Timer dispatch={dispatch} secoundsRemain={secoundsRemain} />
               <NextButton
                 dispatch={dispatch}
                 answer={answer}
