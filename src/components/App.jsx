@@ -38,7 +38,7 @@ function reducer(state, action) {
       };
     case "newAnswer":
       const question = state.questions.at(state.index);
-      console.log(state.questions);
+      // const question = state.questions[state.index];
       return {
         ...state,
         answer: action.payload,
@@ -56,16 +56,9 @@ function reducer(state, action) {
         highscore:
           state.points > state.highscore ? state.points : state.highscore,
       };
-    case "reset":
-      return { ...initialState, question: state.questions, status: "ready" };
-    // return {
-    //   ...state,
-    //   points: 0,
-    //   highscore: 0,
-    //   index: 0,
-    //   answer: null,
-    //   status: "ready",
-    // };
+    case "restart":
+      return { ...initialState, questions: state.questions, status: "ready" };
+
     case "clock":
       return {
         ...state,
@@ -119,7 +112,7 @@ export default function App() {
               dispatch={dispatch}
               answer={answer}
             />
-            <footer>
+            <Footer>
               <Timer dispatch={dispatch} secoundsRemain={secoundsRemain} />
               <NextButton
                 dispatch={dispatch}
@@ -127,7 +120,7 @@ export default function App() {
                 index={index}
                 numQuestions={numQuestions}
               />
-            </footer>
+            </Footer>
           </>
         )}
         {status === "finished" && (

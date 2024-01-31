@@ -16,12 +16,12 @@ function Finishedscreen({ points, maxPossiblePoints, highscore, dispatch }) {
         <span>{emoji}</span> You scored <strong>{points}</strong> out of{" "}
         {maxPossiblePoints} ({Math.ceil(percentage)}%)
       </p>
-      <p className="highscore">(highscore:{highscore} points)</p>
+      <p className="highscore">(Highscore: {highscore} points)</p>
       <button
         className="btn btn-ui"
-        onClick={() => dispatch({ type: "reset" })}
+        onClick={() => dispatch({ type: "restart" })}
       >
-        Start again!
+        Restart quiz
       </button>
     </>
   );
