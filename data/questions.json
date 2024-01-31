@@ -13,9 +13,14 @@
       "points": 10
     },
     {
-      "question": "What's the fundamental building block of React apps?",
-      "options": ["Components", "Blocks", "Elements", "Effects"],
-      "correctOption": 0,
+      "question": "What does 'undefined' represent in JavaScript? ",
+      "options": [
+        "A variable that has not been declared",
+        "A variable with no assigned value",
+        "An error in the code",
+        "An empty array or object"
+      ],
+      "correctOption": 1,
       "points": 10
     }
   ]
