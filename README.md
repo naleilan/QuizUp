@@ -1,7 +1,5 @@
 # QuizUp
 
-- based on jonas schmidtmaan's udemy course
-
 ![Alt text](public/2.jpg)
 
 - The React Quiz
