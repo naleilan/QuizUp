@@ -22,6 +22,7 @@ const initialState = {
   points: 0,
   highscore: 0,
   secoundsRemain: null,
+  selectQuestion: 0,
 };
 
 function reducer(state, action) {
@@ -35,6 +36,7 @@ function reducer(state, action) {
         ...state,
         status: "active",
         secoundsRemain: state.questions.length * SEC_FOR_QUESTION,
+        // selectQuestion: state.points,
       };
     case "newAnswer":
       const question = state.questions.at(state.index);
@@ -72,7 +74,16 @@ function reducer(state, action) {
 
 export default function App() {
   const [
-    { questions, status, index, answer, points, highscore, secoundsRemain },
+    {
+      questions,
+      status,
+      index,
+      answer,
+      points,
+      highscore,
+      secoundsRemain,
+      selectQuestion,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
@@ -81,7 +92,7 @@ export default function App() {
     (prev, cur) => prev + cur.points,
     0
   );
-
+  console.log(selectQuestion);
   useEffect(function () {
     fetch("http://localhost:8000/questions")
       .then((res) => res.json())
@@ -111,6 +122,7 @@ export default function App() {
               question={questions[index]}
               dispatch={dispatch}
               answer={answer}
+              selectQuestion={selectQuestion}
             />
             <Footer>
               <Timer dispatch={dispatch} secoundsRemain={secoundsRemain} />

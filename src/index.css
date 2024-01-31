@@ -89,6 +89,16 @@ h4 {
   align-items: center;
 }
 
+.start option {
+  border-radius: 10px;
+}
+
+.start-btns {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
 .progress {
   margin-bottom: 4rem;
   display: grid;
@@ -257,3 +267,4 @@ progress {
   font-size: inherit;
   padding: 0.8rem;
 }
+/******/
