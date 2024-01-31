@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { Children, useEffect, useReducer } from "react";
 import Header from "./Header";
 import MainPart from "./MainPart.jsx";
 import Loader from "./Loader";
@@ -8,6 +8,8 @@ import Question from "./Question.jsx";
 import NextButton from "./NextButton.jsx";
 import Progress from "./Progress.jsx";
 import Finishedscreen from "./Finishedscreen.jsx";
+import Footer from "./Footer.jsx";
+import Timer from "./Timer.jsx";
 
 const initialState = {
   questions: [],
@@ -102,12 +104,15 @@ export default function App() {
               dispatch={dispatch}
               answer={answer}
             />
-            <NextButton
-              dispatch={dispatch}
-              answer={answer}
-              index={index}
-              numQuestions={numQuestions}
-            />
+            <footer>
+              <Timer />
+              <NextButton
+                dispatch={dispatch}
+                answer={answer}
+                index={index}
+                numQuestions={numQuestions}
+              />
+            </footer>
           </>
         )}
         {status === "finished" && (
